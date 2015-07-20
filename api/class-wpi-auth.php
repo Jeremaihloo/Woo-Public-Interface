@@ -13,3 +13,9 @@ class Authentication{
         return false;
     }
 }
+$A = new Authentication();
+if(isset($_POST['uname'])&&isset($_POST['pwd'])){
+    if($A->auth($_POST['uname'],$_POST['pwd'])){
+        echo "{msg:'success'}";
+    }
+}
