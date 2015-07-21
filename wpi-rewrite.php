@@ -10,7 +10,7 @@
 function rewrite_rules( $wp_rewrite ){
     $new_rules = array(
         'wpi-api\/v'.WPI::VERSION.'/?$' => 'index.php?wpi-api=doc',
-        'wpi-api\/v'.WPI::VERSION.'\/auth\/check/?$' => 'index.php?wpi-api=auth',
+        'wpi-api\/v'.WPI::VERSION.'\/auth\/check/?$' => 'index.php?wpi-api=auth/check',
     ); //添加翻译规则
     $wp_rewrite->rules = $new_rules + $wp_rewrite->rules;
     //php数组相加

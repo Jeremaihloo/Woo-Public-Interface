@@ -18,7 +18,7 @@ final class WPI{
 
     protected static $_instance;
 
-    private $wpi_api;
+    public $wpi_api;
 
     private function __construct(){
         define('WPI_DIR',plugin_dir_path(__FILE__));

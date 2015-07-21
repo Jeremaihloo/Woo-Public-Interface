@@ -26,11 +26,13 @@ class WPI_API{
 
             $n = strpos($wp->query_vars['wpi-api'],'/');
             if(!empty($n)){
-                $api = $wp->query_vars['wpi-api'].substr(0,$n);
-                $method = $wp->query_vars['wpi-api'].substr($n,strlen($wp->query_vars['wpi-api']));
-                if(file_exists(WPI_DIR.'/api/class-wpi-'.$api)){
-                    include_once(WPI_DIR.'/api/class-wpi-'.$api);
-                    call_user_func(array($api,$method[0]),array_splice($method,0));
+                $qs = explode('/',$wp->query_vars['wpi-api']);
+                $api = $qs[0];
+                $method = $qs[1];
+                if(file_exists(WPI_DIR.'/api/class-wpi-'.$api.".php")){
+                    include_once(WPI_DIR.'/api/class-wpi-'.$api.".php");
+                    $args = array_splice($qs,2,2);
+                    call_user_func_array(array($api,$method),$args);
                 }else{
                     $this->server->response_failure('api not found !');
                 }
