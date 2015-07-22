@@ -31,7 +31,7 @@ class WPI_Server{
     }
     public function response_failure($msg='do failure'){
         echo sprintf(self::SERVER_FAILUER_TPL,$msg);
-        $this->status(404);
+        $this->status(200);
     }
     public function contentType($content_type="application/json"){
         header('Content-type: '.$content_type);

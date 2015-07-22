@@ -1,19 +1,10 @@
 <?php
+error_reporting(E_ALL^E_NOTICE^E_WARNING);
 class WPI_API{
     private $server;
     public function __construct()
     {
-
-        $this->init_route();
-
         add_action( 'parse_request', array( $this, 'handle_api_requests'), 0 );
-
-    }
-
-    public function init_route()
-    {
-        include_once('wpi-rewrite.php');
-        wpi_flush_rewrite_rules();
     }
 
     public function handle_api_requests(){
