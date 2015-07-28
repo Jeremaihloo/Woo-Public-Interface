@@ -14,6 +14,8 @@ class auth{
         $this->server = new WPI_Server();
     }
     public static function check($uname,$pwd){
+        WPI_Log::get_instance()->log('wpi api auth check : '.json_encode($_POST));
+
         $server_now = new WPI_Server();
         if(isset($_POST['uname'])){
             $uname = $_POST['uname'];

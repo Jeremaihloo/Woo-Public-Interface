@@ -20,6 +20,8 @@ final class WPI{
 
     public $wpi_api;
 
+    public $wpi_log;
+
     private function __construct(){
         define('WPI_DIR',plugin_dir_path(__FILE__));
         define('WPI_URL',plugin_dir_url(__FILE__));
@@ -32,7 +34,10 @@ final class WPI{
         include_once('wpi-api.php');
         include_once('api/class-wpi-server.php');
         include_once('wpi-functions.php');
+        include_once('api/class-wpi-log.php');
         $this->wpi_api = new WPI_API();
+        $this->wpi_log = WPI_Log::get_instance();
+        $this->wpi_log->set_log_switch(true);
     }
 
     function activate() {
@@ -52,6 +57,7 @@ final class WPI{
             'wpi-api\/v'.WPI::VERSION.'/?$' => 'index.php?wpi-api=doc',
             'wpi-api\/v'.WPI::VERSION.'\/auth\/check/?$' => 'index.php?wpi-api=auth/check',
             'wpi-api\/v'.WPI::VERSION.'\/upload\/image_from_url/?$' => 'index.php?wpi-api=upload/image_from_url',
+            'wpi-api\/v'.WPI::VERSION.'\/upload\/image/?$' => 'index.php?wpi-api=upload/image',
         ); //添加翻译规则
         $wp_rewrite->rules = $new_rules + $wp_rewrite->rules;
         //php数组相加

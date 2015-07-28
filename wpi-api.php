@@ -8,11 +8,13 @@ class WPI_API{
     }
 
     public function handle_api_requests(){
+        WPI_Log::get_instance()->log('wpi api request : '.'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
         global $wp;
         if(isset($_GET['wpi-api'])){
             $wp->query_vars['wpi-api'] = $_GET['wpi-api'];
         }
         if(isset($wp->query_vars['wpi-api'])){
+
             $this->server = new WPI_Server();
 
             $n = strpos($wp->query_vars['wpi-api'],'/');
