@@ -37,6 +37,7 @@ class WPI_API{
                     $this->server->response_failure('api not found !');
                 }
             }
+            WPI_Log::get_instance()->close();
             die();
         }
     }

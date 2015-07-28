@@ -5,7 +5,7 @@
  * Date: 15-7-28
  * Time: 上午9:19
  */
-
+date_default_timezone_set('Asia/Shanghai');
 /**
  * 日志处理类
  *
