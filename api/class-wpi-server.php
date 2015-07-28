@@ -26,18 +26,16 @@ class WPI_Server{
     public function response($data){
         $this->status(200);
         echo $data;
+        WPI_Log::get_instance()->log('wpi server response : '.$data);
     }
     public function response_success($msg='do success !'){
-        echo sprintf(self::SERVER_SUCCESS_TPL,$msg);
-        $this->status(200);
+        $this->response(sprintf(self::SERVER_SUCCESS_TPL,$msg));
     }
     public function response_success_with_data($msg='do success !',$data='empty'){
-        echo sprintf(self::SERVER_SUCCESS_DATA_TPL,$msg,$data);
-        $this->status(200);
+        $this->response(sprintf(self::SERVER_SUCCESS_DATA_TPL,$msg,$data));
     }
     public function response_failure($msg='do failure'){
-        echo sprintf(self::SERVER_FAILUER_TPL,$msg);
-        $this->status(200);
+        $this->response(sprintf(self::SERVER_FAILUER_TPL,$msg));
     }
 
     public function contentType($content_type="application/json"){
